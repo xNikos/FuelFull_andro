@@ -1,10 +1,21 @@
 package com.rinworks.nikos.fuelfullpaliwoikoszty;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class SingleCard {
+
+    DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+    Date dzis = Calendar.getInstance().getTime();
+
     private String vZatankowano;
     private String vZaplacono;
     private String vPrzejechano;
     private String vSpalanie;
+    private String vDate;
+
 
     public SingleCard() {
         //todo: Baza danych IMO?
@@ -12,6 +23,7 @@ public class SingleCard {
         vZaplacono = "182.64 ZŁ";
         vPrzejechano = "456.7 KM";
         vSpalanie = "6.7L/100";
+        vDate = df.format(dzis);
     }
 
     public String getvZatankowano() {
@@ -44,5 +56,9 @@ public class SingleCard {
 
     public void setvSpalanie(String vSpalanie) {
         this.vSpalanie = vSpalanie;
+    }
+
+    public String getvDate() {
+        return vDate;
     }
 }

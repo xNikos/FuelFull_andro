@@ -19,6 +19,7 @@ public class RecycleAdapter extends RecyclerView.Adapter {
         public TextView vZaplacono;
         public TextView vPrzejechano;
         public TextView vSpalanie;
+        public TextView vDate;
 
         public MyViewHolder(View pItem) {
             super(pItem);
@@ -26,6 +27,7 @@ public class RecycleAdapter extends RecyclerView.Adapter {
             vZaplacono = pItem.findViewById(R.id.cardOption2Value);
             vPrzejechano = pItem.findViewById(R.id.cardOption3Value);
             vSpalanie = pItem.findViewById(R.id.cardOption4Value);
+            vDate = pItem.findViewById(R.id.cardDate);
         }
     }
 
@@ -48,6 +50,7 @@ public class RecycleAdapter extends RecyclerView.Adapter {
         ((MyViewHolder) viewHolder).vZaplacono.setText(card.getvZaplacono());
         ((MyViewHolder) viewHolder).vPrzejechano.setText(card.getvPrzejechano());
         ((MyViewHolder) viewHolder).vSpalanie.setText(card.getvSpalanie());
+        ((MyViewHolder) viewHolder).vDate.setText(card.getvDate());
     }
 
     @Override
