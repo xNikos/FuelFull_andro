@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class RecycleAdapter extends RecyclerView.Adapter {
 
     @NonNull
-    private ArrayList<SingleCard> mSingleCard = new ArrayList<>(); //żródło danych
+    private ArrayList<SingleCard> mSingleCard; //żródło danych
     private RecyclerView mRecycleView;
     private class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView vZatankowano;
@@ -40,7 +40,19 @@ public class RecycleAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.recycle_view_card, viewGroup, false);
-                return new MyViewHolder(view);
+
+        //deleting stuff
+        //todo: integracja z bazą :D
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int positionToDelete = mRecycleView.getChildAdapterPosition(v);
+                mSingleCard.remove(positionToDelete);
+                notifyItemRemoved(positionToDelete);
+            }
+        });
+
+        return new MyViewHolder(view);
     }
 
     @Override
