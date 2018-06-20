@@ -14,7 +14,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:cardBackgroundColor="#dddddd"
         app:cardCornerRadius="8dp"
         app:cardElevation="@dimen/cardview_default_elevation"
         app:cardPreventCornerOverlap="false"
@@ -33,7 +32,7 @@
                 android:layout_marginTop="8dp"
                 android:drawableStart="@drawable/ic_local_gas_station_black_24dp"
                 android:drawableTint="@color/colorPrimary"
-                android:text="tankowanie"
+                android:text="@string/tankowanie"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="30sp"
@@ -58,14 +57,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="Date placeholder"
+                android:text="@string/date_placeholder"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/cardTitle"
+                tools:ignore="SmallSp" />
 
             <TextView
                 android:id="@+id/cardOption1"
@@ -75,7 +75,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:padding="2dp"
-                android:text="zatankowano:"
+                android:text="@string/zatankowano"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="14sp"
@@ -91,7 +91,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Zapłacono:"
+                android:text="@string/zap_acono"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="14sp"
@@ -109,7 +109,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:padding="2dp"
-                android:text="Spalanie:"
+                android:text="@string/spalanie"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="14sp"
@@ -127,7 +127,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:padding="2dp"
-                android:text="przejechano:"
+                android:text="@string/przejechano"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="14sp"
@@ -141,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="36.6L"
+                android:text="@string/_36_6l"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardOption1"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -150,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="172.54 ZŁ"
+                android:text="@string/_172_54_z"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardOption2"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -159,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="456.6 KM"
+                android:text="@string/_456_6_km"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardOption4"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -168,7 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="7.8L/100"
+                android:text="@string/_7_8l_100"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardOption3"
                 app:layout_constraintEnd_toEndOf="parent" />
 

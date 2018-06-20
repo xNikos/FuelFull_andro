@@ -22,17 +22,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    //TODO: Check Dialogs :D
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final FloatingActionButton mFab = findViewById(R.id.fab_main);
-        final RecyclerView mRecyclerView = findViewById(R.id.card_recycler);
+
+        final FloatingActionButton mFab = findViewById(R.id.fab_main); //fab init
+        final RecyclerView mRecyclerView = findViewById(R.id.card_recycler); //recycle_view init
         mRecyclerView.setHasFixedSize(true); //optymalizacja
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this)); //layout w recycle
         mRecyclerView.setItemAnimator(new DefaultItemAnimator()); //dodaj animacje
 
+        //temp array list
         ArrayList<SingleCard> cards = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             cards.add(new SingleCard());
@@ -54,9 +56,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //fab on click
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Dialog create
                 AlertDialog.Builder popupBuilder = new AlertDialog.Builder(MainActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.tankowanie_popup, null);
                 TextView tankowanie_title = mView.findViewById(R.id.tankowanie_popup_title);
@@ -73,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 final AlertDialog dialog = popupBuilder.create();
                 dialog.show();
 
+                //dialog buttons on click
                 okbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -84,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                     "Dodano do bazy! :)",Snackbar
                                             .LENGTH_LONG);
                             mSnack.show();
+                            
                         } else {
                             Toast mToast = Toast.makeText(MainActivity.this, "Proszę wypełnij " +
                                     "wszystkie pola!", Toast.LENGTH_SHORT);

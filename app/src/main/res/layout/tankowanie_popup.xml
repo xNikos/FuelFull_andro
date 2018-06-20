@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Zatankowano litrów:"
+        android:text="@string/zatankowano_litr_w"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tankowanie_popup_title" />
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Cena za litr:"
+        android:text="@string/cena_za_litr"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Zatankowano" />
 
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Przejechano:"
+        android:text="@string/przejechano_pupup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CenaL" />
 
@@ -60,7 +60,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="np.: 36.6L"
+        android:hint="@string/np_36_6l"
         android:inputType="number"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/Zatankowano"
@@ -74,7 +74,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="np.: 4.97 ZŁ"
+        android:hint="@string/np_4_97_z"
         android:inputType="number"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/CenaL"
@@ -88,7 +88,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="np.: 456.7 KM"
+        android:hint="@string/np_456_7_km"
         android:inputType="number"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/PrzejechanoT"
@@ -120,7 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
-        android:text="OK"
+        android:text="@string/Ok_btn"
         android:textColor="@android:color/holo_green_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
@@ -131,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
-        android:text="ANULUJ"
+        android:text="@string/anuluj_btn"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintBaseline_toBaselineOf="@+id/tankowanie_ok_btn"
         app:layout_constraintEnd_toStartOf="@+id/tankowanie_ok_btn" />

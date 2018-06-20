@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">FuelFull: Paliwo i koszty!</string>
     <string name="dodaj_tankowanie_title">Dodaj tankowanie:</string>
+    <string name="tankowanie">tankowanie</string>
+    <string name="date_placeholder">Date placeholder</string>
+    <string name="zatankowano">zatankowano:</string>
+    <string name="zap_acono">Zapłacono:</string>
+    <string name="spalanie">Spalanie:</string>
+    <string name="przejechano">przejechano:</string>
+    <string name="_36_6l">36.6L</string>
+    <string name="_172_54_z">172.54 ZŁ</string>
+    <string name="_456_6_km">456.6 KM</string>
+    <string name="_7_8l_100">7.8L/100</string>
+    <string name="zatankowano_litr_w">Zatankowano litrów:</string>
+    <string name="cena_za_litr">Cena za litr:</string>
+    <string name="przejechano_pupup">Przejechano:</string>
+    <string name="np_36_6l">np.: 36.6L</string>
+    <string name="np_4_97_z">np.: 4.97 ZŁ</string>
+    <string name="np_456_7_km">np.: 456.7 KM</string>
+    <string name="Ok_btn">OK</string>
+    <string name="anuluj_btn">ANULUJ</string>
 </resources>
