@@ -19,4 +19,8 @@
     <string name="np_456_7_km">np.: 456.7 KM</string>
     <string name="Ok_btn">OK</string>
     <string name="anuluj_btn">ANULUJ</string>
+    <string name="marka_model">Ford Fiesta</string>
+    <string name="rocznik">2005</string>
+    <string name="przebieg">Przebieg:</string>
+    <string name="przebiegVal">270 489</string>
 </resources>

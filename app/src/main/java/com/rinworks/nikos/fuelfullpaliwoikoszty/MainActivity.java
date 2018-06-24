@@ -4,10 +4,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true); //optymalizacja
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this)); //layout w recycle
         mRecyclerView.setItemAnimator(new DefaultItemAnimator()); //dodaj animacje
+
 
         //temp array list
         ArrayList<SingleCard> cards = new ArrayList<>();
@@ -114,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 }
