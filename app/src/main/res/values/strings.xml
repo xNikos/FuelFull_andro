@@ -23,4 +23,6 @@
     <string name="rocznik">2005</string>
     <string name="przebieg">Przebieg:</string>
     <string name="przebiegVal">270 489</string>
+    <string name="open_navigation_drawer">Otwórz boczny pasek menu</string>
+    <string name="close_navigation_drawer">Zamknij boczny pasek menu</string>
 </resources>

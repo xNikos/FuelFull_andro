@@ -5,9 +5,13 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
@@ -15,27 +19,45 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    //private DrawerLayout drawer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        drawer = findViewById(R.id.drawerLayout);
+//
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+
         final FloatingActionButton mFab = findViewById(R.id.fab_main); //fab init
         final RecyclerView mRecyclerView = findViewById(R.id.card_recycler); //recycle_view init
         mRecyclerView.setHasFixedSize(true); //optymalizacja
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this)); //layout w recycle
         mRecyclerView.setItemAnimator(new DefaultItemAnimator()); //dodaj animacje
+
+
 
 
         //temp array list
@@ -94,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                                     "Dodano do bazy! :)",Snackbar
                                             .LENGTH_LONG);
                             mSnack.show();
-                            
+
                         } else {
                             Toast mToast = Toast.makeText(MainActivity.this, "Proszę wypełnij " +
                                     "wszystkie pola!", Toast.LENGTH_SHORT);
