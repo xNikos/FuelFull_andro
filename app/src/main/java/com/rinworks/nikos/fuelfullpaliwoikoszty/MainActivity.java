@@ -33,6 +33,9 @@ import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
+
 public class MainActivity extends AppCompatActivity {
     //private DrawerLayout drawer;
 
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 //        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -51,13 +55,12 @@ public class MainActivity extends AppCompatActivity {
 //        drawer.addDrawerListener(toggle);
 //        toggle.syncState();
 
-        final FloatingActionButton mFab = findViewById(R.id.fab_main); //fab init
+
+        final FabSpeedDial mFab = findViewById(R.id.extendedFab); //extended fab init
         final RecyclerView mRecyclerView = findViewById(R.id.card_recycler); //recycle_view init
         mRecyclerView.setHasFixedSize(true); //optymalizacja
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this)); //layout w recycle
         mRecyclerView.setItemAnimator(new DefaultItemAnimator()); //dodaj animacje
-
-
 
 
         //temp array list
@@ -81,65 +84,73 @@ public class MainActivity extends AppCompatActivity {
                 super.onScrollStateChanged(mRecyclerView, newState);
             }
         });
-
-        //fab on click
-        mFab.setOnClickListener(new View.OnClickListener() {
+        mFab.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
-            public void onClick(View v) {
+            public boolean onMenuItemSelected(MenuItem menuItem) {
 
-                //Dialog create
-                AlertDialog.Builder popupBuilder = new AlertDialog.Builder(MainActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.tankowanie_popup, null);
-                TextView tankowanie_title = mView.findViewById(R.id.tankowanie_popup_title);
-                TextView zatankowano = mView.findViewById(R.id.Zatankowano);
-                TextView cenaL = mView.findViewById(R.id.CenaL);
-                TextView przejechano = mView.findViewById(R.id.PrzejechanoT);
-                final EditText zatankowanoV = mView.findViewById(R.id.ZatankowanioVALUE);
-                final EditText CenaLV = mView.findViewById(R.id.CenaLValue);
-                final EditText przejechanoV = mView.findViewById(R.id.PrzejechanoTValue);
-                Button okbtn = mView.findViewById(R.id.tankowanie_ok_btn);
-                Button cancelbtn = mView.findViewById(R.id.tankowanie_cancel_btn);
+                switch (menuItem.getItemId()) {
+                    case R.id.fab_tankowanie:
+                        //Dialog create
+                        AlertDialog.Builder popupBuilder = new AlertDialog.Builder(MainActivity.this);
+                        View mView = getLayoutInflater().inflate(R.layout.tankowanie_popup, null);
+                        TextView tankowanie_title = mView.findViewById(R.id.tankowanie_popup_title);
+                        TextView zatankowano = mView.findViewById(R.id.Zatankowano);
+                        TextView cenaL = mView.findViewById(R.id.CenaL);
+                        TextView przejechano = mView.findViewById(R.id.PrzejechanoT);
+                        final EditText zatankowanoV = mView.findViewById(R.id.ZatankowanioVALUE);
+                        final EditText CenaLV = mView.findViewById(R.id.CenaLValue);
+                        final EditText przejechanoV = mView.findViewById(R.id.PrzejechanoTValue);
+                        Button okbtn = mView.findViewById(R.id.tankowanie_ok_btn);
+                        Button cancelbtn = mView.findViewById(R.id.tankowanie_cancel_btn);
 
-                popupBuilder.setView(mView);
-                final AlertDialog dialog = popupBuilder.create();
-                dialog.show();
+                        popupBuilder.setView(mView);
+                        final AlertDialog dialog = popupBuilder.create();
+                        dialog.show();
 
-                //dialog buttons on click
-                okbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!zatankowanoV.getText().toString().isEmpty() && !CenaLV.getText().toString
-                                ().isEmpty() && !przejechanoV.getText().toString().isEmpty()) {
-                            //todo:Dodaj do bazy
-                            dialog.dismiss();
-                            Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
-                                    "Dodano do bazy! :)",Snackbar
-                                            .LENGTH_LONG);
-                            mSnack.show();
+                        //dialog buttons on click
+                        okbtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (!zatankowanoV.getText().toString().isEmpty() && !CenaLV.getText().toString
+                                        ().isEmpty() && !przejechanoV.getText().toString().isEmpty()) {
+                                    //todo:Dodaj do bazy
+                                    dialog.dismiss();
+                                    Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                                            "Dodano do bazy! :)", Snackbar
+                                                    .LENGTH_LONG);
+                                    mSnack.show();
 
-                        } else {
-                            Toast mToast = Toast.makeText(MainActivity.this, "Proszę wypełnij " +
-                                    "wszystkie pola!", Toast.LENGTH_SHORT);
-                            mToast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL,
-                                    0,0);
-                            mToast.show();
+                                } else {
+                                    Toast mToast = Toast.makeText(MainActivity.this, "Proszę wypełnij " +
+                                            "wszystkie pola!", Toast.LENGTH_SHORT);
+                                    mToast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL,
+                                            0, 0);
+                                    mToast.show();
 
-                        }
-                    }
-                });
+                                }
+                            }
+                        });
 
-                cancelbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
-                                "Anulowano!",Snackbar.LENGTH_LONG);
-                        mSnack.show();
-                    }
-                });
+                        cancelbtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                                        "Anulowano!", Snackbar.LENGTH_LONG);
+                                mSnack.show();
+                            }
+                        });
+                        break;
+                    //Default
+                    default:
+                        Toast.makeText(MainActivity.this, "Coś", Toast.LENGTH_SHORT).show();
+                }
 
+                return true;
             }
+
         });
+
 
     }
 }

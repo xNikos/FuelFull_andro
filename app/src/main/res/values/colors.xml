@@ -3,7 +3,18 @@
     <color name="darkColorPrimary">#8bc34a</color>
     <color name="darkColorPrimaryDark">#5a9216</color>
     <color name="darkColorAccent">#ffd54f</color>
-    <color name="colorPrimary">#ba68c8</color>
-    <color name="colorPrimaryDark">#883997</color>
-    <color name="colorAccent">#f06292</color>
+    <color name="colorPrimary">#029be5</color>
+    <color name="colorPrimaryDark">#006db3</color>
+    <color name="colorAccent">#81c784</color>
+    <color name="positiveBTN">#00ff44</color>
+    <color name="negativeBTN">#ff0044</color>
+    <color name="fabColor1">#f68a4c</color>
+    <color name="fabColor2">#c873f4</color>
+    <color name="fabColor3">#FF4081</color>
+
+    <integer-array name="fab_colors">
+        <item>@color/fabColor1</item>
+        <item>@color/fabColor2</item>
+        <item>@color/fabColor3</item>
+    </integer-array>
 </resources>

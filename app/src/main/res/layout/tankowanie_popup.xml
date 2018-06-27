@@ -61,7 +61,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="@string/np_36_6l"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/Zatankowano"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +75,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="@string/np_4_97_z"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/CenaL"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="@string/np_456_7_km"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/PrzejechanoT"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +121,7 @@
         android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         android:text="@string/Ok_btn"
-        android:textColor="@android:color/holo_green_dark"
+        android:textColor="@color/positiveBTN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -132,8 +132,9 @@
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         android:text="@string/anuluj_btn"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@color/negativeBTN"
         app:layout_constraintBaseline_toBaselineOf="@+id/tankowanie_ok_btn"
         app:layout_constraintEnd_toStartOf="@+id/tankowanie_ok_btn" />
+
 
 </android.support.constraint.ConstraintLayout>

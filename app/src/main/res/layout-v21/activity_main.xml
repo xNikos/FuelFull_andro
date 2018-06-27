@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:id="@+id/drawerLayout"
     tools:context=".MainActivity"
     tools:openDrawer="start">
 
@@ -16,7 +17,7 @@
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="?attr/colorPrimaryDark"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -33,19 +34,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_main"
+            <io.github.yavski.fabspeeddial.FabSpeedDial
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/colorAccent"
-                android:clickable="true"
-                android:focusable="true"
-                app:borderWidth="0dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:id="@+id/extendedFab"
+                app:fabGravity="bottom_end"
+                app:fabMenu="@menu/fab_menu"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_add_black_24dp" />
+                app:miniFabBackgroundTintList="@array/fab_colors"
+                app:miniFabDrawableTint="@android:color/white"
+                app:miniFabTitleTextColorList="@array/fab_colors" />
 
         </android.support.constraint.ConstraintLayout>
 
