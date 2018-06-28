@@ -2,6 +2,8 @@ package com.rinworks.nikos.fuelfullpaliwoikoszty;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.constraint.ConstraintLayout;
@@ -42,8 +44,10 @@ import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    //private DrawerLayout drawer;
+    private DrawerLayout drawer;
     SwitchCompat switchCompat;
+    private static final String PREFS_NAME = "prefs";
+    private static final String PREF_DARK_THEME = "dark_theme";
 
 
 
@@ -51,33 +55,43 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME,false);
+
+        if(useDarkTheme) {
+            setTheme(R.style.AppThemeDark);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //inicjalizacja apki
 
         switchCompat = findViewById(R.id.switcher);
         NavigationView navigationView = findViewById(R.id.NavigationView);
+//        navigationView.setNavigationItemSelectedListener(this);
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_theme);
         View actionToogleView = MenuItemCompat.getActionView(item);
 
         switchCompat = actionToogleView.findViewById(R.id.switcher);
+        switchCompat.setChecked(useDarkTheme);
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Toast.makeText(MainActivity.this, "Ciemny motyw: "+isChecked, Toast.LENGTH_SHORT).show();
+                toogleTheme(isChecked);
             }
         });
 
 
 
-//        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        drawer = findViewById(R.id.drawerLayout);
-//
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawerLayout);
+
+       ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
+       drawer.addDrawerListener(toggle);
+       toggle.syncState();
 
 
 
@@ -294,6 +308,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+    private void toogleTheme(boolean darkTheme) {
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putBoolean(PREF_DARK_THEME, darkTheme);
+        editor.apply();
+        //restart activity
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }
 
