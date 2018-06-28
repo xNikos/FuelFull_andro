@@ -2,21 +2,21 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/popup_Layout"
+    android:id="@+id/popup_Layout_naprawa"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tankowanie_popup_title"
+        android:id="@+id/naprawa_popup_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:drawablePadding="4dp"
-        android:drawableStart="@drawable/ic_local_gas_station_black_24dp"
-        android:drawableTint="@color/fabColor1"
-        android:text="@string/dodaj_tankowanie_title"
+        android:drawableStart="@drawable/ic_repair"
+        android:drawableTint="@color/fabColor2"
+        android:text="@string/dodajNapraweTitle"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,77 +24,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Zatankowano"
+        android:id="@+id/Zaplacono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/zatankowano_litr_w"
+        android:text="@string/zaplaconoNaprawa"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tankowanie_popup_title" />
+        app:layout_constraintTop_toBottomOf="@+id/naprawa_popup_title" />
 
     <TextView
-        android:id="@+id/CenaL"
+        android:id="@+id/Naprawiono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/cena_za_litr"
+        android:text="@string/naprawiono"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Zatankowano" />
-
-    <TextView
-        android:id="@+id/PrzejechanoT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/przejechano_pupup"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CenaL" />
+        app:layout_constraintTop_toBottomOf="@+id/Zaplacono" />
 
     <EditText
-        android:id="@+id/ZatankowanioVALUE"
+        android:id="@+id/ZaplaconoValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="@string/np_36_6l"
+        android:hint="@string/naprawaValue"
         android:background="@android:color/transparent"
         android:inputType="numberDecimal"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/Zatankowano"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
-
-    <EditText
-        android:id="@+id/CenaLValue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="@string/np_4_97_z"
-        android:background="@android:color/transparent"
-        android:inputType="numberDecimal"
-        android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/CenaL"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
-
-    <EditText
-        android:id="@+id/PrzejechanoTValue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="@string/np_456_7_km"
-        android:background="@android:color/transparent"
-        android:inputType="numberDecimal"
-        android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/PrzejechanoT"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Zaplacono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
@@ -107,7 +67,7 @@
 
     <View
         android:id="@+id/divider"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -115,7 +75,7 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PrzejechanoTValue" />
+        app:layout_constraintTop_toBottomOf="@+id/naprawionoVALUE" />
 
     <Button
         android:id="@+id/tankowanie_ok_btn"
@@ -132,12 +92,28 @@
         android:id="@+id/tankowanie_cancel_btn"
         style="@style/Base.Widget.AppCompat.Button.Small.Bordeless"
         android:layout_width="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="12dp"
         android:background="@android:color/transparent"
         android:text="@string/anuluj_btn"
         android:textColor="@color/negativeBTN"
         app:layout_constraintBaseline_toBaselineOf="@+id/tankowanie_ok_btn"
         app:layout_constraintEnd_toStartOf="@+id/tankowanie_ok_btn" />
+        <!-- TODO: Sprawdzić czy buttony oke (ID) :D -->
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/naprawionoVALUE"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="2dp"
+        android:hint="@string/wykonaneNaprawy"
+        android:background="@android:color/transparent"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Naprawiono" />
+
 
 
 </android.support.constraint.ConstraintLayout>

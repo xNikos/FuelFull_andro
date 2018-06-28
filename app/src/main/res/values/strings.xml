@@ -25,4 +25,17 @@
     <string name="przebiegVal">270 489</string>
     <string name="open_navigation_drawer">Otwórz boczny pasek menu</string>
     <string name="close_navigation_drawer">Zamknij boczny pasek menu</string>
+    <string name="dodajNapraweTitle">Dodaj naprawę:</string>
+    <string name="zaplaconoNaprawa">Zapłacono:</string>
+    <string name="naprawiono">Naprawiono:</string>
+    <string name="naprawaValue">np.: 452.72ZŁ</string>
+    <string name="wykonaneNaprawy">Wpisz wykonane naprawy! \n np.: Szczęki, klocki, tarcze,
+    itd.</string>
+    <string name="dodajPrzypomnienieTitle">Dodaj przypomnienie:</string>
+    <string name="tytulPrzypomnienie">Tytuł:</string>
+    <string name="trescPrzypomnienia">Treść przypomnienia:</string>
+    <string name="tytulValue">np.: Przegląd</string>
+    <string name="trescValue">Dodaj treść przypomnienia! \n np.: Pamiętaj! Badanie techniczne za
+        tydzień!</string>
+    <string name="kiedyPrzypomnienie">Kiedy?</string>
 </resources>
