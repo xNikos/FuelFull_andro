@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -43,7 +45,7 @@ import java.util.regex.Pattern;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     SwitchCompat switchCompat;
     private static final String PREFS_NAME = "prefs";
@@ -52,12 +54,42 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_all_expenses:
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+                break;
+            case R.id.nav_fuel_expenses:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                        new tankowanieFragment()).commit();
+                break;
+            case R.id.nav_repair_expenses:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                        new naprawaFragment()).commit();
+                break;
+            case R.id.nav_notifications:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                        new przypomnienieFragment()).commit();
+                break;
+            case R.id.about_author:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                        new aboutApkFragment()).commit();
+                break;
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME,false);
+
 
         if(useDarkTheme) {
             setTheme(R.style.AppThemeDark);
@@ -67,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
         switchCompat = findViewById(R.id.switcher);
         NavigationView navigationView = findViewById(R.id.NavigationView);
-//        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_all_expenses); //Domyślne podświetlone
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_theme);
         View actionToogleView = MenuItemCompat.getActionView(item);
@@ -306,6 +339,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+
+
+
 
 
     }
