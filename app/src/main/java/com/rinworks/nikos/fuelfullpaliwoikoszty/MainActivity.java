@@ -48,9 +48,7 @@ import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     SwitchCompat switchCompat;
-    private static final String PREFS_NAME = "prefs";
-    private static final String PREF_DARK_THEME = "dark_theme";
-
+    DataProccessor dataProccessor = new DataProccessor(this); //sharedPreferencesClass
 
 
 
@@ -87,11 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME,false);
 
-
-        if(useDarkTheme) {
+        if(DataProccessor.getBool("Theme")){
             setTheme(R.style.AppThemeDark);
         }
         super.onCreate(savedInstanceState);
@@ -106,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View actionToogleView = MenuItemCompat.getActionView(item);
 
         switchCompat = actionToogleView.findViewById(R.id.switcher);
-        switchCompat.setChecked(useDarkTheme);
+        switchCompat.setChecked(DataProccessor.getBool("Theme"));
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -340,20 +335,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
-
-
-
-
-
     }
     private void toogleTheme(boolean darkTheme) {
-        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putBoolean(PREF_DARK_THEME, darkTheme);
-        editor.apply();
+        DataProccessor.setBool("Theme",darkTheme);
         //restart activity
         Intent intent = getIntent();
         finish();
         startActivity(intent);
     }
 }
-
