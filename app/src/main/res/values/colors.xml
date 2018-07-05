@@ -23,19 +23,18 @@
     <color name="bg_screen1">#f6c64c</color>
     <color name="bg_screen2">#55d220</color>
     <color name="bg_screen3">#3395ff</color>
-    <color name="bg_screen4">#74428e</color>
+    <color name="bg_screen4">#a333ff</color>
 
     <!-- dots inactive colors -->
     <color name="dot_dark_screen1">#d1a139</color>
     <color name="dot_dark_screen2">#48a814</color>
     <color name="dot_dark_screen3">#2278d4</color>
-    <color name="dot_dark_screen4">#603079</color>
-
+    <color name="dot_dark_screen4">#882ad6</color>
     <!-- dots active colors -->
-    <color name="dot_light_screen1">#f9d98d</color>
-    <color name="dot_light_screen2">#abf98c</color>
-    <color name="dot_light_screen3">#93c6fd</color>
-    <color name="dot_light_screen4">#6f587b</color>
+    <color name="dot_light_screen1">#55d1a139</color>
+    <color name="dot_light_screen2">#5548a814</color>
+    <color name="dot_light_screen3">#552278d4</color>
+    <color name="dot_light_screen4">#55882ad6</color>
 
     <array name="array_dot_inactive">
         <item>@color/dot_light_screen1</item>

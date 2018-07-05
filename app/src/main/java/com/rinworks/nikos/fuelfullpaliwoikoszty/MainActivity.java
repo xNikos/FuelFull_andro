@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.internal.NavigationMenu;
@@ -45,11 +46,10 @@ import java.util.regex.Pattern;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
     SwitchCompat switchCompat;
     DataProccessor dataProccessor = new DataProccessor(this); //sharedPreferencesClass
-
 
 
     @Override
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        if(DataProccessor.getBool("Theme")){
+        if (DataProccessor.getBool("Theme")) {
             setTheme(R.style.AppThemeDark);
         }
         super.onCreate(savedInstanceState);
@@ -105,11 +105,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(MainActivity.this, "Ciemny motyw: "+isChecked, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Ciemny motyw: " + isChecked, Toast.LENGTH_SHORT).show();
                 toogleTheme(isChecked);
             }
         });
-
 
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
@@ -117,11 +116,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawer = findViewById(R.id.drawerLayout);
 
-       ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
-       drawer.addDrawerListener(toggle);
-       toggle.syncState();
-
-
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
 
         final FabSpeedDial mFab = findViewById(R.id.extendedFab); //extended fab init
@@ -152,6 +149,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 super.onScrollStateChanged(mRecyclerView, newState);
             }
         });
+
+        //starting popup
+        //Dialog create
+        if (!DataProccessor.getBool("CarAdded?")) {
+        AlertDialog.Builder popupBuilder = new AlertDialog.Builder(MainActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.add_car_popup, null);
+        TextView addCar_title = mView.findViewById(R.id.addCar_popupTitle);
+        final TextView marka = mView.findViewById(R.id.marka);
+        TextView model = mView.findViewById(R.id.model);
+        TextView rocznik = mView.findViewById(R.id.rocznik);
+        final EditText markaV = mView.findViewById(R.id.markaValue);
+        final EditText modelV = mView.findViewById(R.id.modelValue);
+        final EditText rocznikV = mView.findViewById(R.id.rocznikValue);
+        rocznikV.setFilters(new InputFilter[]{new DecimalDigitsInputFilter
+                (4, 0)});
+        Button okbtn = mView.findViewById(R.id.tankowanie_ok_btn);
+
+        popupBuilder.setView(mView);
+        final AlertDialog dialog = popupBuilder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+
+        //dialog buttons on click
+        okbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!markaV.getText().toString().isEmpty() && !modelV.getText().toString
+                        ().isEmpty() && !rocznikV.getText().toString().isEmpty()) {
+                    //todo:Dodaj do bazy
+                    dialog.dismiss();
+                    Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                            "Dodano do bazy! :)", Snackbar
+                                    .LENGTH_LONG);
+                    DataProccessor.setBool("CarAdded?",true);
+                    mSnack.show();
+                } else {
+                    Toast mToast = Toast.makeText(MainActivity.this, "Proszę wypełnij " +
+                            "wszystkie pola!", Toast.LENGTH_SHORT);
+                    mToast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL,
+                            0, 0);
+                    mToast.show();
+
+                }
+            }
+        });}
+
+
         mFab.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
@@ -336,8 +380,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
     }
+
     private void toogleTheme(boolean darkTheme) {
-        DataProccessor.setBool("Theme",darkTheme);
+        DataProccessor.setBool("Theme", darkTheme);
         //restart activity
         Intent intent = getIntent();
         finish();

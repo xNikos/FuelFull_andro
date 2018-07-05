@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:alpha=".6"
         android:background="@android:color/transparent"
         android:text="Dalej" />
 

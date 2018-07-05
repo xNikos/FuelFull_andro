@@ -75,7 +75,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:padding="2dp"
-                android:text="@string/zatankowano"
+                android:text="@string/hardcoded_zatankowano"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="14sp"
@@ -91,7 +91,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/zap_acono"
+                android:text="@string/hardcoded_zaplacono"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="14sp"
@@ -109,7 +109,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:padding="2dp"
-                android:text="@string/spalanie"
+                android:text="@string/hardcoded_spalanie"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="14sp"
@@ -127,7 +127,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:padding="2dp"
-                android:text="@string/przejechano"
+                android:text="@string/hardcoded_przejechano"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textSize="14sp"
@@ -141,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/_36_6l"
+                android:text="@string/placeholder_zatankowano"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardOption1"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -150,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/_172_54_z"
+                android:text="@string/placeholder_zaplacono"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardOption2"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -159,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/_456_6_km"
+                android:text="@string/placeholder_przejechano"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardOption4"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -168,7 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="@string/_7_8l_100"
+                android:text="@string/placeholder_spalanie"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardOption3"
                 app:layout_constraintEnd_toEndOf="parent" />
 

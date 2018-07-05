@@ -3,20 +3,20 @@
     <string name="dodaj_tankowanie_title">Dodaj tankowanie:</string>
     <string name="tankowanie">tankowanie</string>
     <string name="date_placeholder">Date placeholder</string>
-    <string name="zatankowano">zatankowano:</string>
-    <string name="zap_acono">Zapłacono:</string>
-    <string name="spalanie">Spalanie:</string>
-    <string name="przejechano">przejechano:</string>
-    <string name="_36_6l">36.6L</string>
-    <string name="_172_54_z">172.54 ZŁ</string>
-    <string name="_456_6_km">456.6 KM</string>
-    <string name="_7_8l_100">7.8L/100</string>
-    <string name="zatankowano_litr_w">Zatankowano litrów:</string>
+    <string name="hardcoded_zatankowano">zatankowano:</string>
+    <string name="hardcoded_zaplacono">Zapłacono:</string>
+    <string name="hardcoded_spalanie">Spalanie:</string>
+    <string name="hardcoded_przejechano">przejechano:</string>
+    <string name="placeholder_zatankowano">36.6L</string>
+    <string name="placeholder_zaplacono">172.54 ZŁ</string>
+    <string name="placeholder_przejechano">456.6 KM</string>
+    <string name="placeholder_spalanie">7.8L/100</string>
+    <string name="hardcoded_zatankowano_litrow">Zatankowano litrów:</string>
     <string name="cena_za_litr">Cena za litr:</string>
     <string name="przejechano_pupup">Przejechano:</string>
-    <string name="np_36_6l">np.: 36.6L</string>
-    <string name="np_4_97_z">np.: 4.97 ZŁ</string>
-    <string name="np_456_7_km">np.: 456.7 KM</string>
+    <string name="hint_zatankowano">np.: 36.6L</string>
+    <string name="hint_zaplacono">np.: 4.97 ZŁ</string>
+    <string name="hint_przejechano">np.: 456.7 KM</string>
     <string name="Ok_btn">OK</string>
     <string name="anuluj_btn">ANULUJ</string>
     <string name="marka_model">Ford Fiesta</string>
@@ -38,4 +38,22 @@
     <string name="trescValue">Dodaj treść przypomnienia! \n np.: Pamiętaj! Badanie techniczne za
         tydzień!</string>
     <string name="kiedyPrzypomnienie">Kiedy?</string>
+    <string name="welcomeScreen">Witaj w aplikacji FuelFull!</string>
+    <string name="welcomeScreenDesc">Chcesz monitorować wydatki związane ze swoim samochodem? Dobrze trafiłeś! Dzięki naszej aplikacji sprawdzisz
+        w którym kierunku uciekają pieniądze włożone w jego utrzymanie!</string>
+    <string name="fuelScreen">Paliwo?!</string>
+    <string name="fuelScreenDesc">Myślisz, że pustka w Twoim portfelu jest spowodowana właśnie paliwem? Sprawdzimy to! A przy okazji przeliczmy średnie spalanie!</string>
+    <string name="repairScreen">Części?!</string>
+    <string name="repairScreenDesc">Twój samochód to gruchot, czy może nowy mercedes? Nie ważne! Każdy eksploatowany samochód w końcu musi mieć wymieniony choćby olej!
+         Przy wymianie części, dodaj to do naszej aplikacji, a nigdy nie będziesz mieć wątpliwości kiedy naprawa została wykonana!</string>
+    <string name="notificationScreen">Przegląd?!</string>
+    <string name="notificationScreenDesc">Kurczę! Przegląd do dziś?! Kompletnie zapomniałem! Dzięki nam już nigdy nie zapomnisz, o przeglądzie, OC, czy innych sprawach
+     które powinny być przez Ciebie pamiętane! Będziemy pamiętać za Ciebie i przypomnimy w razie konieczności!</string>
+    <string name="Dodaj_samochod">Dodaj swój samochód!</string>
+    <string name="hardcoded_marka">Marka:</string>
+    <string name="hardcoded_model">Model:</string>
+    <string name="hardcoded_rocznik">Rocznik:</string>
+    <string name="hint_marka">np.: Ford</string>
+    <string name="hint_model">np.: Fiesta</string>
+    <string name="hint_rocznik">np.: 2005</string>
 </resources>
