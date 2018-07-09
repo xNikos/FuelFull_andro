@@ -12,6 +12,7 @@ public class naprawaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Wykonane naprawy:");
         return inflater.inflate(R.layout.naprawa_recycler,container,false);
     }
 }

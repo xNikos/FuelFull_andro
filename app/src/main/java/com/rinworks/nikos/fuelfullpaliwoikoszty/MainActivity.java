@@ -37,6 +37,7 @@ import android.text.Spanned;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DataProccessor dataProccessor = new DataProccessor(this); //sharedPreferencesClass
 
 
+
+
     //Nav drawer selected fragments
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_fuel_expenses:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
                         new tankowanieFragment()).commit();
+
                 break;
             case R.id.nav_repair_expenses:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
@@ -142,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRecyclerView.setHasFixedSize(true); //optymalizacja
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this)); //layout w recycle
         mRecyclerView.setItemAnimator(new DefaultItemAnimator()); //dodaj animacje
-
 
         //temp array list
         ArrayList<SingleCard> cards = new ArrayList<>();
@@ -467,4 +470,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         finish();
         startActivity(intent);
     }
+
 }

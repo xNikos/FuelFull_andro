@@ -12,6 +12,7 @@ public class aboutApkFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("O aplikacji:");
         return inflater.inflate(R.layout.about_apk,container,false);
     }
 }

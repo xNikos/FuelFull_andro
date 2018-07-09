@@ -12,6 +12,7 @@ public class przypomnienieFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Twoje przypomnienia:");
         return inflater.inflate(R.layout.przypomnienie_recycler,container,false);
     }
 }

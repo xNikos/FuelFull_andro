@@ -12,6 +12,7 @@ public class tankowanieFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle("Wszystkie tankowania:");
         return inflater.inflate(R.layout.tankowanie_recycler,container,false);
     }
 }
