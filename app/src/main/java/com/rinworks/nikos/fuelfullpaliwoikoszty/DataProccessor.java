@@ -34,7 +34,7 @@ public class DataProccessor {
 
     public static String getStr(String key) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
-        return prefs.getString(key,"DNF");
+        return prefs.getString(key,"Empty");
     }
 
     public static void setBool(String key, boolean value) {

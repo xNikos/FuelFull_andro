@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="226dp"
+    android:layout_height="180dp"
     android:background="?attr/colorAccent"
     android:id="@+id/nav_header">
 
@@ -17,6 +17,9 @@
         android:text="@string/marka_model"
         android:textSize="32sp"
         android:textStyle="bold"
+        android:textColor="#fff"
+        android:shadowColor="#000"
+        android:shadowRadius="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -25,6 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:textColor="#fff"
+        android:shadowColor="#000"
+        android:shadowRadius="3"
         android:text="@string/rocznik"
         app:layout_constraintBaseline_toBaselineOf="@+id/nav_header_name"
         app:layout_constraintStart_toEndOf="@+id/nav_header_name" />
@@ -35,6 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
+        android:textColor="#fff"
+        android:shadowColor="#000"
+        android:shadowRadius="3"
         android:text="@string/przebiegVal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,6 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
+        android:textColor="#fff"
+        android:shadowColor="#000"
+        android:shadowRadius="3"
         android:text="km"
         android:textAlignment="viewStart"
         app:layout_constraintBaseline_toBaselineOf="@+id/nav_header_przebiegVal"
@@ -72,6 +84,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
+        android:textColor="#fff"
+        android:shadowColor="#000"
+        android:shadowRadius="3"
         android:text="7.8"
         android:textAlignment="textEnd"
         app:layout_constraintBaseline_toBaselineOf="@+id/nav_header_hardcodedL"
@@ -83,8 +98,24 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:textColor="#fff"
+        android:shadowColor="#000"
+        android:shadowRadius="3"
         android:text="L/100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/nav_header_rocznik" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.15"
+        android:elevation="-2dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nav_header_name"
+        />
 
 </android.support.constraint.ConstraintLayout>

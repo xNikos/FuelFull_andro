@@ -4,10 +4,17 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
@@ -39,6 +46,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,10 +57,12 @@ import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
+    public static final int PICK_IMAGE = 1;
     SwitchCompat switchCompat;
     DataProccessor dataProccessor = new DataProccessor(this); //sharedPreferencesClass
 
 
+    //Nav drawer selected fragments
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -59,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = getIntent();
                 finish();
                 startActivity(intent);
+                //TODO: Ogarnąć to fragmentami + FAB jako osobna klasa?!
                 break;
             case R.id.nav_fuel_expenses:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
@@ -83,9 +95,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //white/black theme
         if (DataProccessor.getBool("Theme")) {
             setTheme(R.style.AppThemeDark);
         }
@@ -98,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_all_expenses); //Domyślne podświetlone
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_theme);
+        View header = navigationView.getHeaderView(0);
+        Button addIMG = header.findViewById(R.id.nav_header_add_photo);
+        View nav_header= header.findViewById(R.id.nav_header);
         View actionToogleView = MenuItemCompat.getActionView(item);
 
         switchCompat = actionToogleView.findViewById(R.id.switcher);
@@ -110,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
+        //Title Bar
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -119,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
 
         final FabSpeedDial mFab = findViewById(R.id.extendedFab); //extended fab init
         final RecyclerView mRecyclerView = findViewById(R.id.card_recycler); //recycle_view init
@@ -134,6 +150,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             cards.add(new SingleCard());
         }
         mRecyclerView.setAdapter(new RecycleAdapter(cards, mRecyclerView));
+
+
+        //Add photo
+        addIMG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickIntent.setType("image/*");
+                Intent chooserIntent = Intent.createChooser(pickIntent, "Wybierz aplikację " +
+                        "galerii:");
+                startActivityForResult(chooserIntent, PICK_IMAGE);
+            }
+        });
+
+        //Check if foto
+        if (DataProccessor.getStr("NavIMG")!="Empty") {
+            Bitmap bitmap = Base64.decode(DataProccessor.getStr("NavIMG"));
+            BitmapDrawable bg = new BitmapDrawable(getResources(), bitmap);
+            nav_header.setBackground(bg);
+            addIMG.setScaleX(10);
+            addIMG.setScaleY(10);
+            addIMG.setAlpha(0);
+
+        }
 
         //Fab hide show
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -178,12 +218,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (!markaV.getText().toString().isEmpty() && !modelV.getText().toString
                         ().isEmpty() && !rocznikV.getText().toString().isEmpty()) {
                     //todo:Dodaj do bazy
+                    if(rocznikV.getText().toString().length()<4)
+                    {
+                        Toast mToast = Toast.makeText(MainActivity.this, "Aż taki z niego " +
+                                "staruszek?! :D", Toast
+                                .LENGTH_SHORT);
+                        mToast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL,
+                                0, 0);
+                        mToast.show();
+                    }
+                    else {
                     dialog.dismiss();
                     Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
                             "Dodano do bazy! :)", Snackbar
                                     .LENGTH_LONG);
                     DataProccessor.setBool("CarAdded?",true);
-                    mSnack.show();
+                    mSnack.show();}
                 } else {
                     Toast mToast = Toast.makeText(MainActivity.this, "Proszę wypełnij " +
                             "wszystkie pola!", Toast.LENGTH_SHORT);
@@ -379,6 +429,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
+        //Image add override
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        NavigationView navigationView = findViewById(R.id.NavigationView);
+        View header = navigationView.getHeaderView(0);
+        View nav_header= header.findViewById(R.id.nav_header);
+        Button addIMG = header.findViewById(R.id.nav_header_add_photo);
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null && data.getData
+                () != null) {
+            Uri uri = data.getData();
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                BitmapDrawable bg = new BitmapDrawable(getResources(),bitmap);
+                nav_header.setBackground(bg);
+                DataProccessor.setStr("NavIMG",Base64.encode(bitmap));
+                addIMG.setScaleX(10);
+                addIMG.setScaleY(10);
+                addIMG.setAlpha(0);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void toogleTheme(boolean darkTheme) {
