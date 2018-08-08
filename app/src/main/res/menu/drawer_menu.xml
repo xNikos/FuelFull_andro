@@ -22,9 +22,10 @@
             android:id="@+id/AppSettings">
             <menu>
                 <item android:id="@+id/nav_theme"
-                    android:title="Czarny motyw"
+                    android:title="Ciemny motyw"
                     android:icon="@drawable/ic_theme"
-                    app:actionLayout="@layout/theme_toggle"/>
+                    app:actionLayout="@layout/theme_toggle"
+                    app:showAsAction="always"/>
                 <item android:id="@+id/about_author"
                     android:title="O aplikacji"
                     android:icon="@drawable/ic_about_auhor" />

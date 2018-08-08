@@ -70,10 +70,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_all_expenses:
+                /* Old init mainActivity
                 Intent intent = getIntent();
                 finish();
                 startActivity(intent);
-                //TODO: Ogarnąć to fragmentami + FAB jako osobna klasa?!
+                //TODO: Ogarnąć to fragmentami + FAB jako osobna klasa?! (done - obejście ATM - mainActivityFragment + activity_recycler)
+                break;
+                */
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                        new mainActivityFragment()).commit();
+
                 break;
             case R.id.nav_fuel_expenses:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
@@ -95,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         drawer.closeDrawer(GravityCompat.START);
-
         return true;
     }
 
@@ -123,6 +128,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switchCompat = actionToogleView.findViewById(R.id.switcher);
         switchCompat.setChecked(DataProccessor.getBool("Theme"));
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switchCompat.toggle();
+                return false;
+            }
+        });
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
