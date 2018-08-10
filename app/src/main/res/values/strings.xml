@@ -56,4 +56,5 @@
     <string name="hint_marka">np.: Ford</string>
     <string name="hint_model">np.: Fiesta</string>
     <string name="hint_rocznik">np.: 2005</string>
+    <string name="Naprawa_card_title">naprawa</string>
 </resources>
