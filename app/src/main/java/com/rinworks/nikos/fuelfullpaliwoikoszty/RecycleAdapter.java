@@ -41,9 +41,8 @@ public class RecycleAdapter extends RecyclerView.Adapter { //todo: deleting stuf
         }
     }
 
-    public RecycleAdapter(ArrayList<SingleCard> pCards, RecyclerView pRecycleView) {
+    public RecycleAdapter(ArrayList<SingleCard> pCards) {
         mSingleCard = pCards;
-        mRecycleView = pRecycleView;
     }
     //todo: deleting stuff (2/4)
     /*@RequiresApi(api = Build.VERSION_CODES.M)

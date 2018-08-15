@@ -2,6 +2,7 @@ package com.rinworks.nikos.fuelfullpaliwoikoszty;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.FragmentContainer;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -62,21 +63,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SwitchCompat switchCompat;
     DataProccessor dataProccessor = new DataProccessor(this); //sharedPreferencesClass
 
-
-
-
     //Nav drawer selected fragments
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_all_expenses:
-                /* Old init mainActivity
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
-                //TODO: Ogarnąć to fragmentami + FAB jako osobna klasa?! (done - obejście ATM - mainActivityFragment + activity_recycler)
-                break;
-                */
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
                         new mainActivityFragment()).commit();
 
@@ -104,9 +95,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         //white/black theme
         if (DataProccessor.getBool("Theme")) {
@@ -114,6 +108,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //inicjalizacja apki
+
+        /*final RecyclerView mRecyclerView = findViewById(R.id.card_recycler); //recycle_view init
+        mRecyclerView.setHasFixedSize(true); //optymalizacja
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this)); //layout w recycle
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator()); //dodaj animacje*/
 
         switchCompat = findViewById(R.id.switcher);
         NavigationView navigationView = findViewById(R.id.NavigationView);
@@ -154,18 +153,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         final FabSpeedDial mFab = findViewById(R.id.extendedFab); //extended fab init
-        final RecyclerView mRecyclerView = findViewById(R.id.card_recycler); //recycle_view init
-        mRecyclerView.setHasFixedSize(true); //optymalizacja
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this)); //layout w recycle
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator()); //dodaj animacje
-
-        //temp array list
-        ArrayList<SingleCard> cards = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            cards.add(new SingleCard());
-        }
-        mRecyclerView.setAdapter(new RecycleAdapter(cards, mRecyclerView));
-
 
         //Add photo
         addIMG.setOnClickListener(new View.OnClickListener() {
@@ -191,19 +178,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         //Fab hide show
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 50 && mFab.isShown() || dy < -50 && mFab.isShown())
-                    mFab.hide();
-            }
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) mFab.show();
-                super.onScrollStateChanged(mRecyclerView, newState);
-            }
-        });
+//        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                if (dy > 50 && mFab.isShown() || dy < -50 && mFab.isShown())
+//                    mFab.hide();
+//            }
+//
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                if (newState == RecyclerView.SCROLL_STATE_IDLE) mFab.show();
+//                super.onScrollStateChanged(mRecyclerView, newState);
+//            }
+//        });
 
         //starting popup
         //Dialog create
@@ -244,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                     else {
                     dialog.dismiss();
-                    Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                    Snackbar mSnack = Snackbar.make(findViewById(R.id.fragmentContainer),
                             "Dodano do bazy! :)", Snackbar
                                     .LENGTH_LONG);
                     DataProccessor.setBool("CarAdded?",true);
@@ -299,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                         ().isEmpty() && !przejechanoV.getText().toString().isEmpty()) {
                                     //todo:Dodaj do bazy
                                     dialog.dismiss();
-                                    Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                                    Snackbar mSnack = Snackbar.make(findViewById(R.id.fragmentContainer),
                                             "Dodano do bazy! :)", Snackbar
                                                     .LENGTH_LONG);
                                     mSnack.show();
@@ -319,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onClick(View v) {
                                 dialog.dismiss();
-                                Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                                Snackbar mSnack = Snackbar.make(findViewById(R.id.fragmentContainer),
                                         "Anulowano!", Snackbar.LENGTH_LONG);
                                 mSnack.show();
                             }
@@ -353,7 +340,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                         .toString().isEmpty() && !kiedyV.getText().toString().isEmpty()) {
                                     //todo:Dodaj do bazy
                                     dialogNotification.dismiss();
-                                    Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                                    Snackbar mSnack = Snackbar.make(findViewById(R.id.fragmentContainer),
                                             "Dodano do bazy! :)", Snackbar
                                                     .LENGTH_LONG);
                                     mSnack.show();
@@ -373,7 +360,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onClick(View v) {
                                 dialogNotification.dismiss();
-                                Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                                Snackbar mSnack = Snackbar.make(findViewById(R.id.fragmentContainer),
                                         "Anulowano!", Snackbar.LENGTH_LONG);
                                 mSnack.show();
                             }
@@ -408,7 +395,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                                 ().isEmpty()) {
                                     //todo:Dodaj do bazy
                                     dialogRepair.dismiss();
-                                    Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                                    Snackbar mSnack = Snackbar.make(findViewById(R.id.fragmentContainer),
                                             "Dodano do bazy! :)", Snackbar
                                                     .LENGTH_LONG);
                                     mSnack.show();
@@ -428,7 +415,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onClick(View v) {
                                 dialogRepair.dismiss();
-                                Snackbar mSnack = Snackbar.make(findViewById(R.id.card_recycler),
+                                Snackbar mSnack = Snackbar.make(findViewById(R.id.fragmentContainer),
                                         "Anulowano!", Snackbar.LENGTH_LONG);
                                 mSnack.show();
                             }
@@ -443,6 +430,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         });
+
 
         //Image add override
 
@@ -482,5 +470,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         finish();
         startActivity(intent);
     }
+
 
 }
